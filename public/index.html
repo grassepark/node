@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Owoify Text</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="icon.png">
+</head>
+<body>
+  <h1>Furry Translator</h1>
+  <p>using <a href="https://www.npmjs.com/package/owoify-js" target="blank">this</a> NPM package<br> try using punctuation!</p>
+
+
+  <div id="form">
+  <form id="owoifyForm">
+    <label for="inputText">Text:</label>
+    <input type="text" id="inputText" name="inputText"><br>
+    
+    <label>Choose Level:</label>
+    <select id="option" name="option">
+      <option value="uwu">uwu</option>
+      <option value="owo">owo</option>
+      <option value="uvu">uvu</option>
+    </select><br>
+
+    <button type="submit">Translate</button>
+    <br>
+    <label>Result:</label>
+    <div id="result"></div>
+  </form>
+</div>
+
+
+<script src="client.js"></script>
+</body>
+</html>
