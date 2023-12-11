@@ -1,8 +1,7 @@
-//server.js
-// Import necessary modules
 const express = require('express');
 const path = require('path');
 const owoify = require('owoify-js').default;
+const getRandomCat = require('random-cat-img');
 
 // Create an instance of an express application
 const app = express();
@@ -19,7 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/owoify', (req, res) => {
   const { inputText, option } = req.body;
 
-  //thank you chatGPT
   if (!inputText) {
     return res.status(400).json({ error: 'Text input is required.' });
   }
@@ -29,13 +27,23 @@ app.post('/owoify', (req, res) => {
   if (option === 'uwu' || option === 'owo' || option === 'uvu') {
     owoifiedText = owoify(inputText, option);
   } else {
-    owoifiedText = owoify(inputText); // Default to 'uwu' if option is invalid
+    owoifiedText = owoify(inputText); 
   }
 
   res.json({ owoifiedText });
 });
 
-// Set the application to listen on a port
+app.get('/randomcat', async (req, res) => {
+  try {
+    const data = await getRandomCat();
+    const catImageURL = data.message; // Extract the cat image URL from the response data
+    res.json({ catImageURL });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to fetch random cat image' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
